@@ -1,4 +1,6 @@
-from tkinter import *
+#!/usr/bin/python3
+# coding=utf8
+from tk import *
 from discord_webhook import DiscordWebhook
 import os
 
