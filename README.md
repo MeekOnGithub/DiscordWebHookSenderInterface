@@ -14,7 +14,7 @@ Puis écrivez cette commande :
 
 Quand l'installation finiras lancer le programme :
 
-python Windows.py
+python webhooksender.py
 
 
 Voila :D
