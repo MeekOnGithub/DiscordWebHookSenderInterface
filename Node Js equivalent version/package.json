@@ -1,0 +1,13 @@
+{
+  "name": "webhook-sender",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . --overwrite --platform=win32 --arch=x64 --icon=icon.ico --prune=true --out=release-builds"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

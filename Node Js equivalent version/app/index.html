@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Créé un div avec la classe "form" (utile pour le css) -->
+    <div class="form">
+        <h1>DISCORD WEBHOOK SENDER</h1>
+        <p>by Entitymob#0667</p>
+        <p>Envoyez un message sur un webhook discord</p>
+        <input type="text" id="url" placeholder="URL du webhook"><br>
+        <input type="text" id="message" placeholder="Message"><br>
+        <button type="submit" id="send">Envoyer</button>
+    </div>
+    <script>
+        let submit = document.getElementById('send');
+
+        function webhooksend(msg, webhookurl) {
+            console.log(msg, webhookurl);
+            fetch(webhookurl).then(res => res.json()).then(data => {
+                let webhookid = data.id; // On récupère l'id et le token du webhook
+                let webhooktoken = data.token;
+                let webhookurl = `https://discord.com/api/webhooks/${webhookid}/${webhooktoken}`; // On crée l'url du webhook
+                fetch(webhookurl, { // On envoie le message
+                    method: 'POST', // On utilise la méthode POST
+                    headers: { // On ajoute les headers
+                        'Content-Type': 'application/json' // On spécifie que le contenu est du JSON
+                    },
+                    body: JSON.stringify({
+                        content: msg // On envoie le message
+                    })
+                }).then(res => res.json()).then(data => { // On récupère la réponse
+                    console.log(data); // On affiche la réponse dans la console (pour le debug)
+                })
+            });
+
+        }
+
+        submit.addEventListener('click', () => { // Quand on clique sur le bouton "Envoyer"
+            let URL = document.getElementById('url').value; // On récupère l'url et le message
+            let message = document.getElementById('message').value; // On récupère l'url et le message
+            webhooksend(message, URL); // On envoie le message
+        });
+    </script>
+</body>
+</html>
